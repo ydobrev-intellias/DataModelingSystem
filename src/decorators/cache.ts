@@ -10,21 +10,24 @@ export default function cache(
 
     if ("cache" in this && this.cache instanceof Map) {
       cacheValue = this.cache.get(cacheKey);
-
       if (cacheValue) {
         console.log(
-          `\n[Cache - Hit] ${key} query`,
-          args ? `with key ${args.join(" - ")}` : null,
-          "has been retrieved from cache."
+          args.length
+            ? `\n[Cache - Hit] ${key} query with key ${args.join(
+                " - "
+              )} retrieved from cache.`
+            : `\n[Cache - Hit] ${key} query retrieved from cache.`
         );
         return cacheValue;
       }
 
       cacheValue = originalMethod.call(this, ...args);
       console.log(
-        `\n[Cache - Miss] ${key} query`,
-        args ? `with key ${args.join(" - ")}\n` : null,
-        "has been cached."
+        args.length
+          ? `\n[Cache - Miss] ${key} query with key ${args.join(
+              " - "
+            )} has been cached.`
+          : `\n[Cache - Miss] ${key} query has been cached.`
       );
 
       this.cache.set(cacheKey, cacheValue);

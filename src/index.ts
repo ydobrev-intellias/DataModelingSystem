@@ -41,7 +41,7 @@ function case1() {
 
 function case2() {
   console.log(
-    "\n==== CASE 2: User should not be able to use admin operations ====\n"
+    "\n==== CASE 2: (Error) User should not be able to use admin operations ====\n"
   );
   const authService = new AuthService();
 
@@ -88,6 +88,7 @@ function case3() {
     userService.deleteUser(user.id);
     console.log("User deleted successfully.");
     console.log("Remaining users", userService.getAllUsers());
+    console.log("Remaining users from cache", userService.getAllUsers()); // From cache
   } catch (e) {
     if (e instanceof Error) {
       console.log("Error:", e.message);
@@ -101,7 +102,7 @@ function case3() {
 
 function case4() {
   console.log(
-    "\n==== CASE 4: User should not be able to delete another user ====\n"
+    "\n==== CASE 4: (Error) User should not be able to delete another user ====\n"
   );
   const authService = new AuthService();
   try {
@@ -199,7 +200,9 @@ function case6() {
 }
 
 function case7() {
-  console.log("\n==== CASE 7: User should not be able to delete posts ====\n");
+  console.log(
+    "\n==== CASE 7: (Error) User should not be able to delete posts ====\n"
+  );
   const authService = new AuthService();
   try {
     const postService = new PostService();
