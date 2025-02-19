@@ -13,10 +13,10 @@ export default function cache(
       if (cacheValue) {
         console.log(
           args.length
-            ? `\n[Cache - Hit] ${key} query with key ${args.join(
+            ? `[Cache - Hit] ${key} query with key ${args.join(
                 " - "
               )} retrieved from cache.`
-            : `\n[Cache - Hit] ${key} query retrieved from cache.`
+            : `[Cache - Hit] ${key} query retrieved from cache.`
         );
         return cacheValue;
       }
@@ -24,10 +24,10 @@ export default function cache(
       cacheValue = originalMethod.call(this, ...args);
       console.log(
         args.length
-          ? `\n[Cache - Miss] ${key} query with key ${args.join(
+          ? `[Cache - Miss] ${key} query with key ${args.join(
               " - "
             )} has been cached.`
-          : `\n[Cache - Miss] ${key} query has been cached.`
+          : `[Cache - Miss] ${key} query has been cached.`
       );
 
       this.cache.set(cacheKey, cacheValue);

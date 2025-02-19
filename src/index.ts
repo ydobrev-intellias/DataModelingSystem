@@ -27,10 +27,10 @@ function case1() {
       userId: user.id,
     });
 
-    console.log("Post created:", post);
+    console.log("[Main] Post created:", post);
   } catch (e) {
     if (e instanceof Error) {
-      console.log("Error:", e.message);
+      console.log("[Error Handler]", e.message);
     }
   } finally {
     if (authService.isSessionRunning) {
@@ -59,7 +59,7 @@ function case2() {
     userService.getAllUsers(); // Should throw an error since user is not admin
   } catch (e) {
     if (e instanceof Error) {
-      console.log("Error:", e.message);
+      console.log("[Error Handler]", e.message);
     }
   } finally {
     if (authService.isSessionRunning) {
@@ -86,12 +86,11 @@ function case3() {
     });
     authService.startSession(admin); // Start session as admin
     userService.deleteUser(user.id);
-    console.log("User deleted successfully.");
-    console.log("Remaining users", userService.getAllUsers());
-    console.log("Remaining users from cache", userService.getAllUsers()); // From cache
+    console.log("[Main] Remaining users", userService.getAllUsers());
+    console.log("[Main] Remaining users from cache", userService.getAllUsers()); // From cache
   } catch (e) {
     if (e instanceof Error) {
-      console.log("Error:", e.message);
+      console.log("[Error Handler]", e.message);
     }
   } finally {
     if (authService.isSessionRunning) {
@@ -122,7 +121,7 @@ function case4() {
     userService.deleteUser(user2.id); // Should throw an error since user is not admin
   } catch (e) {
     if (e instanceof Error) {
-      console.log("Error:", e.message);
+      console.log("[Error Handler]", e.message);
     }
   } finally {
     if (authService.isSessionRunning) {
@@ -148,13 +147,13 @@ function case5() {
     postService.createPost({ content: "Second post", userId: user.id });
 
     const posts = postService.getPostsForUser(user.id);
-    console.log("User posts:", posts);
+    console.log("[Main] User posts:", posts);
 
     const cachedPosts = postService.getPostsForUser(user.id); // From cache
-    console.log("User posts from cache:", cachedPosts);
+    console.log("[Main] User posts from cache:", cachedPosts);
   } catch (e) {
     if (e instanceof Error) {
-      console.log("Error:", e.message);
+      console.log("[Error Handler]", e.message);
     }
   } finally {
     if (authService.isSessionRunning) {
@@ -190,7 +189,7 @@ function case6() {
     postService.deletePost(post.id);
   } catch (e) {
     if (e instanceof Error) {
-      console.log("Error:", e.message);
+      console.log("[Error Handler]", e.message);
     }
   } finally {
     if (authService.isSessionRunning) {
@@ -222,7 +221,7 @@ function case7() {
     postService.deletePost(post.id); // Should throw an error since user is not admin
   } catch (e) {
     if (e instanceof Error) {
-      console.log("Error:", e.message);
+      console.log("[Error Handler]", e.message);
     }
   } finally {
     if (authService.isSessionRunning) {
